@@ -1,5 +1,6 @@
 #!/bin/bash
 clear
+
 CTRL_C() {
 	rm -rf LACASITA.sh
 	exit
@@ -10,7 +11,9 @@ if [ $(whoami) != 'root' ]; then
 	rm *
 	exit
 fi
+
 trap "CTRL_C" INT TERM EXIT
+
 time_reboot() {
 
 	REBOOT_TIMEOUT="$1"
@@ -22,8 +25,10 @@ time_reboot() {
 	done
 	sudo reboot
 }
+
 v1=$(curl -sSL "https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/vercion")
 echo "$v1" >/etc/versin_script
+
 msg() {
 
 	v22=$(cat /etc/versin_script)
@@ -55,6 +60,7 @@ fun_ip() {
 	fi
 	echo "$IP" >/bin/IPca
 }
+
 os_system() {
 	#code by rufu99
 	system=$(cat -n /etc/issue | grep 1 | cut -d ' ' -f6,7,8 | sed 's/1//' | sed 's/      //')
@@ -71,6 +77,7 @@ os_system() {
 	8 | 9 | 10 | 11 | 16.04 | 18.04 | 20.04 | 20.10 | 21.04 | 21.10 | 22.04) wget -O /etc/apt/sources.list ${link} &>/dev/null ;;
 	esac
 }
+
 repo_install() {
 	link="https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/Repositorios/$VERSION_ID.list"
 	case $VERSION_ID in
@@ -80,6 +87,7 @@ repo_install() {
 		;;
 	esac
 }
+
 stop_install() {
 	msg -verm "	INSTALACION CANCELADA"
 	exit
@@ -91,6 +99,7 @@ function printTitle {
 	printf '%0.s-' $(seq 1 ${#1})
 	echo ""
 }
+
 del() {
 	for ((i = 0; i < $1; i++)); do
 		tput cuu1 && tput dl1
@@ -108,6 +117,7 @@ rootvps() {
 	sleep 1
 	rm -rf /usr/bin/rootlx
 }
+
 msg -bar
 echo -e "\033[1;93m  YA TIENES ACCESO ROOT A TU VPS?\n  ESTO SOLO FUNCIONA PARA (AWS,GOOGLECLOUD,AZURE,ETC)\n  SI YA TIENES ACCESO A ROOT SOLO IGNORA ESTE MENSAJE\n  Y SIGUE CON LA INSTALACION NORMAL..."
 msg -bar
@@ -201,6 +211,7 @@ dependencias() {
 	service apache2 restart >/dev/null 2>&1
 	clear
 }
+
 install_start() {
 	clear
 	os_system
@@ -240,6 +251,7 @@ clear
 ### FIXEADOR PARA SISTEMAS 86_64
 
 clear
+
 fun_ipe() {
 	MIP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
 	MIP2=$(wget -qO- ipv4.icanhazip.com)
@@ -329,6 +341,7 @@ install_fim() {
 	export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games/
 	time_reboot "10"
 }
+
 ofus() {
 	unset server
 	server=$(echo ${txt_ofuscatw} | cut -d':' -f1)
@@ -352,6 +365,7 @@ ofus() {
 	done
 	echo "$txtofus" | rev
 }
+
 verificar_arq() {
 	[[ ! -d ${SCPdir} ]] && mkdir ${SCPdir}
 	[[ ! -d ${SCPusr} ]] && mkdir ${SCPusr}
@@ -382,6 +396,7 @@ verificar_arq() {
 	mv -f ${SCPinstal}/$1 ${ARQ}/$1
 	chmod +x ${ARQ}/$1
 }
+
 fun_ipe
 source /etc/os-release
 export PRETTY_NAME
@@ -426,6 +441,7 @@ error_fun() {
 	rm -rf lista-arq
 	exit 1
 }
+
 invalid_key() {
 
 	echo ""
