@@ -491,62 +491,12 @@ ingresar_key() {
 
 		while read user; do
 			if [[ $(cat ${userid} | grep "605531451") = "" ]]; then
-				MSG="👇❮= 𝙉𝙊𝙏𝙄-𝙆𝙀𝙔 =❯👇   
- ◄══════◄••◩••►══════►
- Version: $(cat /etc/versin_script) INSTALADO✓
- ◄══════◄••◩••►══════►
- AdminBot: $(cat ${SCPdir}/tmp/adminkey)
- Cliente: $(cat ${SCPdir}/tmp/name)
- 🆔: $user
- SLOGAN: $(cat ${SCPdir}/message.txt)
- ◄══════◄••◩••►══════►
- IP: $(cat ${SCPdir}/IP.log)
- SYSTEMA: $(cat /tmp/distro)
- ◄══════◄••◩••►══════►
- KEY: $Key 👈 Usada
- ◄══════◄••◩••►══════►
- By @Lacasitamx
- ◄══════◄••◩••►══════►
- Porque de tal manera amó Dios al mundo,
-que ha dado a su Hijo unigénito,
-para que todo aquel que en él cree, 
-no se pierda, mas tenga vida eterna.(juan 3;16)
-◄══════◄••◩••►══════►
- Por tanto, no te avergüences de dar testimonio 
-de nuestro Señor, ni de mí, preso suyo,
-sino participa de las aflicciones por el evangelio 
-según el poder de Dios,(2 timoteo 1;8)
-
-»Todo aquel que me reconozca en público
- aquí en la tierra también lo reconoceré 
-delante de mi Padre en el cielo;
-»pero al que me niegue aquí en la tierra 
-también yo lo negaré delante 
-de mi Padre en el cielo.(Mateo 10:32-33)
-(𝐉𝐄𝐒𝐔𝐂𝐑𝐈𝐒𝐓𝐎 𝐓𝐄 𝐀𝐌𝐀)
-"
-				curl -s --max-time 10 -d "chat_id=${user}&disable_web_page_preview=1&text=$MSG" $URL &>/dev/null
-				curl -s --max-time 10 -d "chat_id=605531451&disable_web_page_preview=1&text=$MSG" $URL &>/dev/null
+				MSG="👇❮= 𝙉𝙊𝙏𝙄-𝙆𝙀𝙔 =❯👇"
+				# curl -s --max-time 10 -d "chat_id=${user}&disable_web_page_preview=1&text=$MSG" $URL &>/dev/null
+				# curl -s --max-time 10 -d "chat_id=605531451&disable_web_page_preview=1&text=$MSG" $URL &>/dev/null
 			else
-
-				MSG="👇❮= 𝙉𝙊𝙏𝙄-𝙆𝙀𝙔 =❯👇   
- ◄══════◄••◩••►══════►
- Version: $(cat /etc/versin_script) INSTALADO✓
- ◄══════◄••◩••►══════►
- AdminBot: $(cat ${SCPdir}/tmp/adminkey)
- Cliente: $(cat ${SCPdir}/tmp/name)
- 🆔: $user
- SLOGAN: $(cat ${SCPdir}/message.txt)
- ◄══════◄••◩••►══════►
- IP: $(cat ${SCPdir}/IP.log)
- SYSTEMA: $(cat /tmp/distro)
- ◄══════◄••◩••►══════►
- KEY: $Key 👈 Usada
- ◄══════◄••◩••►══════►
- By @Lacasitamx
- ◄══════◄••◩••►══════►
- "
-				curl -s --max-time 10 -d "chat_id=${user}&disable_web_page_preview=1&text=$MSG" $URL &>/dev/null
+				MSG="👇❮= 𝙉𝙊𝙏𝙄-𝙆𝙀𝙔 =❯👇"
+				# curl -s --max-time 10 -d "chat_id=${user}&disable_web_page_preview=1&text=$MSG" $URL &>/dev/null
 			fi
 		done <<<"$(cat ${userid} | cut -d' ' -f1)"
 
