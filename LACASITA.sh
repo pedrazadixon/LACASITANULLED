@@ -399,7 +399,7 @@ install_start
 
 install_continue
 
-wget -O /usr/bin/trans https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/Install/trans &>/dev/null
+wget -O /usr/bin/trans https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/scriptsmx/script/Install/trans &>/dev/null
 wget -O /bin/Desbloqueo.sh https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/desbloqueo.sh &>/dev/null
 chmod +x /bin/Desbloqueo.sh
 wget -O /bin/monitor.sh https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/SCRIPT-8.4/Utilidad/monitor.sh &>/dev/null
