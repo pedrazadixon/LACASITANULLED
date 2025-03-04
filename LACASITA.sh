@@ -250,18 +250,9 @@ fun_ipe() {
 function_verify() {
 
 	[[ $(dpkg --get-selections | grep -w "curl" | head -1) ]] || apt-get install curl -y &>/dev/null
-	permited=$(curl -sSL "https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/control")
-	[[ $(echo $permited | grep "${IP}") = "" ]] && {
-		clear
-		msg -tit
-		echo -e "\n\n\n\033[1;91m————————————————————————————————————————————————————\n      ¡ESTA KEY NO CONCUERDA CON EL INSTALADOR! \n      BOT: @CONECTEDMX_BOT \n————————————————————————————————————————————————————\n\n\n"
-		[[ -d /etc/VPS-MX ]] && rm -rf /etc/VPS-MX
-		exit 1
-	} || {
-		### INTALAR VERSION DE SCRIPT
-		v1=$(curl -sSL "https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/vercion")
-		echo "$v1" >/etc/versin_script
-	}
+	### INTALAR VERSION DE SCRIPT
+	v1=$(curl -sSL "https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/vercion")
+	echo "$v1" >/etc/versin_script
 }
 
 idioma() {
