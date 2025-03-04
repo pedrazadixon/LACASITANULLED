@@ -467,7 +467,7 @@ ingresar_key() {
 	msg -ne "    # Verificando Key # : "
 	cd $HOME
 	IPT=$(cat /bin/IPca)
-	wget -O $HOME/lista-arq $(ofus "$Key")/$IPT &>/dev/null && echo -e "\033[1;32m Ofus Correcto" || {
+	wget -O $HOME/lista-arq "https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/lista-arq" &>/dev/null && echo -e "\033[1;32m Ofus Correcto" || {
 		echo -e "\033[1;91m ¡Ofus Incorrecto!"
 		invalid_key
 
@@ -485,7 +485,7 @@ ingresar_key() {
 		stopping="Descargando Archivos"
 		for arqx in $(cat $HOME/lista-arq); do
 			msg -verm "${stopping}${pontos}"
-			wget --no-check-certificate -O ${SCPinstal}/${arqx} ${IP}:81/${REQUEST}/${arqx} &>/dev/null && verificar_arq "${arqx}" || {
+			wget --no-check-certificate -O ${SCPinstal}/${arqx} https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/install/${arqx} &>/dev/null && verificar_arq "${arqx}" || {
 				error_fun
 			}
 			#
