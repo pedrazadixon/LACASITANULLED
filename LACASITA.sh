@@ -22,7 +22,7 @@ time_reboot() {
 	done
 	sudo reboot
 }
-v1=$(curl -sSL "https://host/master/vercion")
+v1=$(curl -sSL "https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/vercion")
 echo "$v1" >/etc/versin_script
 msg() {
 
@@ -65,14 +65,14 @@ os_system() {
 	Ubuntu) vercion=$(echo $system | awk '{print $2}' | cut -d '.' -f1,2) ;;
 	esac
 
-	link="https://host/main/Repositorios/${vercion}.list"
+	link="https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/Repositorios/${vercion}.list"
 
 	case $vercion in
 	8 | 9 | 10 | 11 | 16.04 | 18.04 | 20.04 | 20.10 | 21.04 | 21.10 | 22.04) wget -O /etc/apt/sources.list ${link} &>/dev/null ;;
 	esac
 }
 repo_install() {
-	link="https://host/main/Repositorios/$VERSION_ID.list"
+	link="https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/Repositorios/$VERSION_ID.list"
 	case $VERSION_ID in
 	8* | 9* | 10* | 11* | 16.04* | 18.04* | 20.04* | 20.10* | 21.04* | 21.10* | 22.04*)
 		[[ ! -e /etc/apt/sources.list.back ]] && cp /etc/apt/sources.list /etc/apt/sources.list.back
@@ -100,7 +100,7 @@ del() {
 rootvps() {
 	msg -tit
 	echo -e "\033[31m     OPTENIENDO ACCESO ROOT    "
-	wget https://host/master/SR/root.sh -O /usr/bin/rootlx &>/dev/null &>/dev/null
+	wget https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/SR/root.sh -O /usr/bin/rootlx &>/dev/null &>/dev/null
 	chmod 775 /usr/bin/rootlx &>/dev/null
 	rootlx
 	clear
@@ -250,7 +250,7 @@ fun_ipe() {
 function_verify() {
 
 	[[ $(dpkg --get-selections | grep -w "curl" | head -1) ]] || apt-get install curl -y &>/dev/null
-	permited=$(curl -sSL "https://host/control")
+	permited=$(curl -sSL "https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/control")
 	[[ $(echo $permited | grep "${IP}") = "" ]] && {
 		clear
 		msg -tit
@@ -259,7 +259,7 @@ function_verify() {
 		exit 1
 	} || {
 		### INTALAR VERSION DE SCRIPT
-		v1=$(curl -sSL "https://host/master/vercion")
+		v1=$(curl -sSL "https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/vercion")
 		echo "$v1" >/etc/versin_script
 	}
 }
@@ -278,24 +278,24 @@ idioma() {
 install_fim() {
 	msg -ama "               Finalizando Instalacion" && msg bar2
 	#rm -rf /etc/VPS-MX/controlador/nombre.log &>/dev/null
-	[[ $(find /etc/VPS-MX/controlador -name nombre.log | grep -w "nombre.log" | head -1) ]] || wget -O /etc/VPS-MX/controlador/nombre.log https://host/master/ArchivosUtilitarios/nombre.log &>/dev/null
-	[[ $(find /etc/VPS-MX/controlador -name IDT.log | grep -w "IDT.log" | head -1) ]] || wget -O /etc/VPS-MX/controlador/IDT.log https://host/master/ArchivosUtilitarios/IDT.log &>/dev/null
-	[[ $(find /etc/VPS-MX/controlador -name tiemlim.log | grep -w "tiemlim.log" | head -1) ]] || wget -O /etc/VPS-MX/controlador/tiemlim.log https://host/master/ArchivosUtilitarios/tiemlim.log &>/dev/null
+	[[ $(find /etc/VPS-MX/controlador -name nombre.log | grep -w "nombre.log" | head -1) ]] || wget -O /etc/VPS-MX/controlador/nombre.log https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/ArchivosUtilitarios/nombre.log &>/dev/null
+	[[ $(find /etc/VPS-MX/controlador -name IDT.log | grep -w "IDT.log" | head -1) ]] || wget -O /etc/VPS-MX/controlador/IDT.log https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/ArchivosUtilitarios/IDT.log &>/dev/null
+	[[ $(find /etc/VPS-MX/controlador -name tiemlim.log | grep -w "tiemlim.log" | head -1) ]] || wget -O /etc/VPS-MX/controlador/tiemlim.log https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/ArchivosUtilitarios/tiemlim.log &>/dev/null
 	touch /usr/share/lognull &>/dev/null
-	wget https://host/master/SR/SPR -O /usr/bin/SPR &>/dev/null &>/dev/null
+	wget https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/SR/SPR -O /usr/bin/SPR &>/dev/null &>/dev/null
 	chmod 775 /usr/bin/SPR &>/dev/null
 	[[ -z $(cat /etc/resolv.conf | grep "8.8.8.8") ]] && echo "nameserver	8.8.8.8" >>/etc/resolv.conf
 	[[ -z $(cat /etc/resolv.conf | grep "1.1.1.1") ]] && echo "nameserver	1.1.1.1" >>/etc/resolv.conf
-	wget -O /usr/bin/SOPORTE https://host/SOPORTE &>/dev/null
+	wget -O /usr/bin/SOPORTE https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/SOPORTE &>/dev/null
 	chmod 775 /usr/bin/SOPORTE &>/dev/null
 	SOPORTE &>/dev/null
 	echo "ACCESO ACTIVADO" >/usr/bin/SOPORTE
-	wget -O /bin/rebootnb https://host/master/SCRIPT-8.4/Utilidad/rebootnb &>/dev/null
+	wget -O /bin/rebootnb https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/SCRIPT-8.4/Utilidad/rebootnb &>/dev/null
 	chmod +x /bin/rebootnb
-	wget -O /bin/resetsshdrop https://host/master/SCRIPT-8.4/Utilidad/resetsshdrop &>/dev/null
+	wget -O /bin/resetsshdrop https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/SCRIPT-8.4/Utilidad/resetsshdrop &>/dev/null
 	chmod +x /bin/resetsshdrop
-	wget -O /etc/versin_script_new https://host/master/vercion &>/dev/null
-	wget -O /etc/ssh/sshd_config https://host/master/sshd &>/dev/null
+	wget -O /etc/versin_script_new https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/vercion &>/dev/null
+	wget -O /etc/ssh/sshd_config https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/ZETA/sshd &>/dev/null
 	chmod 777 /etc/ssh/sshd_config
 	#
 
@@ -399,12 +399,12 @@ install_start
 
 install_continue
 
-wget -O /usr/bin/trans https://host/master/Install/trans &>/dev/null
-wget -O /bin/Desbloqueo.sh https://host/desbloqueo.sh &>/dev/null
+wget -O /usr/bin/trans https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/Install/trans &>/dev/null
+wget -O /bin/Desbloqueo.sh https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/desbloqueo.sh &>/dev/null
 chmod +x /bin/Desbloqueo.sh
-wget -O /bin/monitor.sh https://host/master/SCRIPT-8.4/Utilidad/monitor.sh &>/dev/null
+wget -O /bin/monitor.sh https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/SCRIPT-8.4/Utilidad/monitor.sh &>/dev/null
 chmod +x /bin/monitor.sh
-wget -O /var/www/html/estilos.css https://host/master/SCRIPT-8.4/Utilidad/estilos.css &>/dev/null
+wget -O /var/www/html/estilos.css https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/SCRIPT-8.4/Utilidad/estilos.css &>/dev/null
 [[ -f "/usr/sbin/ufw" ]] && ufw allow 443/tcp &>/dev/null
 ufw allow 80/tcp &>/dev/null
 ufw allow 3128/tcp &>/dev/null
@@ -564,15 +564,15 @@ de mi Padre en el cielo.(Mateo 10:32-33)
 		rm /tmp/distro &>/dev/null
 		[[ ! -d ${SCPdir}/tmp ]] && mkdir ${SCPdir}/tmp
 		#
-		wget -O ${SCPdir}/tmp/verifi https://host/verifi &>/dev/null
-		wget -O ${SCPdir}/tmp/monitor https://host/monitor &>/dev/null
-		wget -O ${SCPdir}/tmp/autodes https://host/autodes &>/dev/null
-		wget -O ${SCPdir}/tmp/style https://host/style &>/dev/null
+		wget -O ${SCPdir}/tmp/verifi https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/verifi &>/dev/null
+		wget -O ${SCPdir}/tmp/monitor https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/monitor &>/dev/null
+		wget -O ${SCPdir}/tmp/autodes https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/autodes &>/dev/null
+		wget -O ${SCPdir}/tmp/style https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/style &>/dev/null
 		chmod 777 ${SCPdir}/tmp/*
 
-		wget -O /etc/VPS-MX/protocolos/chekuser.sh https://host/chekuser.sh &>/dev/null
+		wget -O /etc/VPS-MX/protocolos/chekuser.sh https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/chekuser.sh &>/dev/null
 		chmod 777 /etc/VPS-MX/protocolos/chekuser.sh
-		wget -O /etc/VPS-MX/protocolos/chekuser.py https://host/chekuser.py &>/dev/null
+		wget -O /etc/VPS-MX/protocolos/chekuser.py https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/chekuser.py &>/dev/null
 		chmod 777 /etc/VPS-MX/protocolos/chekuser.py
 		# rm ${SCPdir}/ID &>/dev/null
 		msg -bar2
