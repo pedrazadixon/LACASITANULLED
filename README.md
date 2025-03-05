@@ -5,7 +5,7 @@
 ```
 
 ```bash
-    wget --no-check-certificate https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/LACASITA.sh; 
+    wget https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/LACASITA.sh; 
 ```
 
 ```bash
