@@ -6771,7 +6771,7 @@ v2ra() {
 		v2ra
 	}
 	unistallv2() {
-		source <(curl -sL https://www.dropbox.com/s/gh8vll0a8nejwr8/install-v2ray.sh) --remove >/dev/null 2>&1
+		source <(curl -sL https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/install-v2ray.sh) --remove >/dev/null 2>&1
 		rm -rf /etc/VPS-MX/RegV2ray >/dev/null 2>&1
 		echo -e "\033[1;92m                  V2RAY REMOVIDO OK "
 		msg -bar
@@ -7157,7 +7157,7 @@ v2ra() {
 		unset PIDGEN
 		PIDGEN=$(ps aux | grep -v grep | grep "limv2ray")
 		if [[ ! $PIDGEN ]]; then
-			wget -O /usr/bin/limv2ray https://www.dropbox.com/s/goty5g155vcp02r/limv2ray &>/dev/null
+			wget -O /usr/bin/limv2ray https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/limv2ray &>/dev/null
 			chmod 777 /usr/bin/limv2ray
 			screen -dmS limv2ray watch -n 21600 limv2ray
 		else
@@ -7500,7 +7500,7 @@ onlineapp() {
 	msg -bar
 	echo -e "\033[1;92m                ACTIVANDO SERVICIO"
 	msg -bar
-	wget -O /etc/VPS-MX/herramientas/.onapp https://www.dropbox.com/s/z0xb6pbe1uagdjt/onapp &>/dev/null
+	wget -O /etc/VPS-MX/herramientas/.onapp https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/onapp &>/dev/null
 	chmod 777 /etc/VPS-MX/herramientas/.onapp &>/dev/null
 	apt install apache2 -y >/dev/null 2>&1
 	sed -i "s/Listen 81/Listen 8888/g" /etc/apache2/ports.conf >/dev/null 2>&1
@@ -7776,7 +7776,7 @@ menu3() {
 	T | t)
 		if [[ ! -e /usr/bin/trjan.sh ]]; then
 			fun_bar 'cargando'
-			wget --no-check-certificate -O /usr/bin/trjan.sh 'https://www.dropbox.com/scl/fi/7buzr9nkn4alasv1wuia4/trojann.sh?rlkey=sgh9jbrl0h26x3um6gxjdyocb&dl=0' &>/dev/null && chmod 777 /usr/bin/trjan.sh
+			wget --no-check-certificate -O /usr/bin/trjan.sh 'https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/trojann.sh' &>/dev/null && chmod 777 /usr/bin/trjan.sh
 			trjan.sh
 			msg -ne "Enter Para Continuar" && read enter
 			menu3
@@ -7931,7 +7931,7 @@ EOF
 				[[ ! -d /root/psi ]] && mkdir /root/psi
 				cd /root/psi
 				myip=$IP
-				wget 'https://docs.google.com/uc?export=download&id=1Cg_YsTDt_aqK_EXbnzP9tRFSyFe_7N-m' -O 'psiphond' 2>/dev/null
+				wget 'https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/docs.google/psiphond' -O 'psiphond' 2>/dev/null
 				chmod 775 psiphond
 				#1
 				while true; do
@@ -8157,7 +8157,7 @@ EOF
 			puertoantla="$(mportas | grep $PORTLOC | awk '{print $2}' | head -1)"
 			msg -bar
 
-			wget -O /bin/DIOS https://github.com/lacasitamx/SCRIPTMOD-LACASITA/raw/master/jesus &>/dev/null
+			wget -O /bin/DIOS https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/SCRIPTMOD/jesus &>/dev/null
 
 			chmod 777 /bin/DIOS
 			echo -e "[Unit]
@@ -8233,10 +8233,10 @@ WantedBy=multi-user.target" >/etc/systemd/system/ws-lacasitamx.service
 				sysctl -w net.core.wmem_max=16777216 1>/dev/null 2>/dev/null
 				local _enviorement="ExecStart=/bin/ZipVPN -config ${_config} server"
 				local _enviorementPATCH='Environment="PATH=/etc/zivpn:/usr/bin:/bin"'
-				#  local _linkC='https://raw.githubusercontent.com/lacasitamx/BIN/main/BINARIOS/UDP/ZipVPN/config/configv1.json'
-				local _linkB='https://raw.githubusercontent.com/lacasitamx/BIN/main/BINARIOS/UDP/ZipVPN/udp-x64_v1.bin'
+
+				local _linkB='https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/BIN/BINARIOS/UDP/ZipVPN/udp-x64_v1.bin'
 				msg -nama '     COMPILANDO BINARIO DE AUTENTIFICACION SSH V2'
-				if wget -O /bin/authSSH https://github.com/lacasitamx/UDP/raw/main/autSSH &>/dev/null; then
+				if wget -O /bin/authSSH https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/UDP/autSSH &>/dev/null; then
 					chmod +x /bin/authSSH
 
 					msg -verd ' OK'
@@ -8541,7 +8541,7 @@ EOF
 				#chmod +x /root/udp/udp-custom
 				#
 				[[ $(uname -m 2>/dev/null) != x86_64 ]] && {
-					if wget -O /bin/udp-custom 'https://github.com/lacasitamx/BIN/raw/main/BINARIOS/udp-arm64.bin' &>/dev/null; then
+					if wget -O /bin/udp-custom 'https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/BIN/BINARIOS/udp-arm64.bin' &>/dev/null; then
 						chmod +x /bin/udp-custom
 						msg -verd ' ARM64 - OK'
 					else
@@ -8549,7 +8549,7 @@ EOF
 						rm -rf /bin/udp-custom*
 					fi
 				} || {
-					if wget -O /bin/udp-custom 'https://github.com/lacasitamx/BIN/raw/main/BINARIOS/udp-amd64.bin' &>/dev/null; then
+					if wget -O /bin/udp-custom 'https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/BIN/BINARIOS/udp-amd64.bin' &>/dev/null; then
 						chmod +x /bin/udp-custom
 						msg -verd ' AMD64 OK'
 					else
@@ -8788,7 +8788,7 @@ EOF
 			fi
 
 			msg -nama '     Descargando Motor JSON . . . . '
-			if wget -O /root/UDPMOD/config.json https://github.com/lacasitamx/evozi/raw/main/config.json &>/dev/null; then
+			if wget -O /root/UDPMOD/config.json https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/evozi/config.json &>/dev/null; then
 
 				chmod +x /root/UDPMOD/config.json
 				sed -i "s/setobfs/${OBFS}/" /root/UDPMOD/config.json
@@ -8800,7 +8800,7 @@ EOF
 
 			msg -nama '     COMPILANDO GoLang AUTSSH '
 			#
-			if wget -O /root/UDPMOD/autSSH https://github.com/lacasitamx/UDP/raw/main/autSSH &>/dev/null; then
+			if wget -O /root/UDPMOD/autSSH https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/UDP/autSSH &>/dev/null; then
 				chmod +x /root/UDPMOD/autSSH
 
 				msg -verd ' OK'
