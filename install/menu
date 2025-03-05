@@ -144,7 +144,7 @@ fun_trans() {
 	local LINGUAGE=$(cat ${SCPidioma})
 	[[ -z $LINGUAGE ]] && LINGUAGE=es
 	[[ $LINGUAGE = "es" ]] && echo "$@" && return
-	[[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://raw.githubusercontent.com/scriptsmx/script/master/Install/trans &>/dev/null
+	[[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/scriptsmx/script/Install/trans &>/dev/null
 	[[ ! -e /etc/VPS-MX/texto-mx ]] && touch /etc/VPS-MX/texto-mx
 	source /etc/VPS-MX/texto-mx
 	if [[ -z "$(echo ${texto[$@]})" ]]; then
@@ -158,18 +158,10 @@ fun_trans() {
 	fi
 }
 function_verify() {
-	permited=$(curl -sSL "https://www.dropbox.com/s/nmau2w8vebewpq3/control")
-	[[ $(echo $permited | grep "${IP}") = "" ]] && {
-		clear
-		echo -e "\n\n\n\033[1;91m————————————————————————————————————————————————————\n      ¡ESTA KEY NO CONCUERDA CON EL INSTALADOR! \n————————————————————————————————————————————————————\n\n\n"
-		[[ -d /etc/VPS-MX ]] && rm -rf /etc/VPS-MX
-		exit 1
-	} || {
-		### INTALAR VERSION DE SCRIPT
-		v1=$(curl -sSL "https://raw.githubusercontent.com/lacasitamx/version/master/vercion")
-		echo "$v1" >/etc/versin_script
-		echo "$v1" >/etc/versin_script_new
-	}
+	### INTALAR VERSION DE SCRIPT
+	v1=$(curl -sSL "https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/vercion")
+	echo "$v1" >/etc/versin_script
+	echo "$v1" >/etc/versin_script_new
 }
 atualiza_fun() {
 	fun_ip
@@ -217,7 +209,7 @@ atualiza_fun() {
 	done
 	msg -ne "    # Verificando Key # : "
 	cd $HOME
-	wget -O $HOME/lista-arq $(ofus "$Key")/$IP >/dev/null 2>&1 && echo -e "\033[1;32m Code Correcto de KEY" || {
+	wget -O $HOME/lista-arq "https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/lista-arq" >/dev/null 2>&1 && echo -e "\033[1;32m Code Correcto de KEY" || {
 		echo -e "\033[1;91m Code Incorrecto de KEY"
 		invalid_key
 		exit
@@ -236,7 +228,7 @@ atualiza_fun() {
 		stopping="Configurando Directorios"
 		for arqx in $(cat $HOME/lista-arq); do
 			msg -verm "${stopping}${pontos}"
-			wget --no-check-certificate -O ${SCPinstal}/${arqx} ${IP}:81/${REQUEST}/${arqx} >/dev/null 2>&1 && verificar_arq "${arqx}" || error_fun
+			wget --no-check-certificate -O ${SCPinstal}/${arqx} https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/install/${arqx} >/dev/null 2>&1 && verificar_arq "${arqx}" || error_fun
 			tput cuu1 && tput dl1
 			pontos+="."
 		done
@@ -255,15 +247,15 @@ atualiza_fun() {
 		done <<<"$(cat ${userid} | cut -d' ' -f1)"
 
 		[[ ! -d ${SCPdir}/tmp ]] && mkdir ${SCPdir}/tmp
-		wget -O ${SCPdir}/tmp/verifi https://www.dropbox.com/s/tv7yis89au5v8sv/verifi &>/dev/null
-		wget -O ${SCPdir}/tmp/monitor https://www.dropbox.com/s/zwqhu7gavru6l9i/monitor &>/dev/null
-		wget -O ${SCPdir}/tmp/autodes https://www.dropbox.com/s/fwcor9tbksnyuxy/autodes &>/dev/null
-		wget -O /etc/VPS-MX/tmp/style https://www.dropbox.com/s/f33mi30lbxawvku/style &>/dev/null
+		wget -O ${SCPdir}/tmp/verifi https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/verifi &>/dev/null
+		wget -O ${SCPdir}/tmp/monitor https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/monitor &>/dev/null
+		wget -O ${SCPdir}/tmp/autodes https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/autodes &>/dev/null
+		wget -O ${SCPdir}/tmp/style https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/style &>/dev/null
 		chmod 777 ${SCPdir}/*
 		#
-		wget -O /etc/VPS-MX/protocolos/chekuser.sh https://www.dropbox.com/s/dypjomdhjhkpahk/chekuser.sh &>/dev/null
+		wget -O /etc/VPS-MX/protocolos/chekuser.sh https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/chekuser.sh &>/dev/null
 		chmod 777 /etc/VPS-MX/protocolos/chekuser.sh
-		wget -O /etc/VPS-MX/protocolos/chekuser.py https://www.dropbox.com/s/7he83qd5pfznrvh/chekuser.py &>/dev/null
+		wget -O /etc/VPS-MX/protocolos/chekuser.py https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/chekuser.py &>/dev/null
 		chmod 777 /etc/VPS-MX/protocolos/chekuser.py
 		msg -bar2
 		[[ -e $HOME/lista-arq ]] && rm -rf $HOME/lista-arq
@@ -721,13 +713,10 @@ usercodes() {
 			[[ $(cat ${USRloked} | grep -w "$1") ]] && return 1
 			echo " $1 (BLOCK-MULTILOGIN) $(date +%r--%d/%m/%y)"
 			limseg="$(less /etc/VPS-MX/controlador/tiemdes.log)"
-			KEY="2012880601:AAEJ3Kk18PGDzW57LpTMnVMn_pQYQKW3V9w"
+			KEY="xxxxxx"
 			URL="https://api.telegram.org/bot$KEY/sendMessage"
-			MSG="⚠️ AVISO DE VPS: $NOM1 ⚠️
-🔹 CUENTA: $1 
-❗️📵 BLOCK FIJO/TEMPORAL 📵❗️
-🔓( AUTOUNLOCK EN $limseg SEGUNDOS) 🔓"
-			curl -s --max-time 10 -d "chat_id=$IDB1&disable_web_page_preview=1&text=$MSG" $URL &>/dev/null
+			MSG="⚠️ AVISO DE VPS: $NOM1 ⚠️🔹 CUENTA: $1 ❗️📵 BLOCK FIJO/TEMPORAL 📵❗️🔓( AUTOUNLOCK EN $limseg SEGUNDOS) 🔓"
+			# curl -s --max-time 10 -d "chat_id=$IDB1&disable_web_page_preview=1&text=$MSG" $URL &>/dev/null
 
 			pkill -u $1 &>/dev/null
 
@@ -3939,9 +3928,9 @@ Debian / Ubuntu Sistema： apt-get install iptables -y"
 		fi
 	}
 	Update_Shell() {
-		sh_new_ver=$(wget --no-check-certificate -qO- -t1 -T3 "https://www.dropbox.com/s/q1oq2c6ex3n060c/blockBT.sh" | grep 'sh_ver="' | awk -F "=" '{print $NF}' | sed 's/\"//g' | head -1)
+		sh_new_ver=$(wget --no-check-certificate -qO- -t1 -T3 "https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/blockBT.sh" | grep 'sh_ver="' | awk -F "=" '{print $NF}' | sed 's/\"//g' | head -1)
 		[[ -z ${sh_new_ver} ]] && echo -e "${Error} No se puede vincular a Github !" && exit 0
-		wget https://www.dropbox.com/s/q1oq2c6ex3n060c/blockBT.sh -O /etc/ger-frm/blockBT.sh &>/dev/null
+		wget https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/blockBT.sh -O /etc/ger-frm/blockBT.sh &>/dev/null
 		chmod +x /etc/ger-frm/blockBT.sh
 		echo -e "El script ha sido actualizado a la última versión.[ ${sh_new_ver} ]"
 		msg -bar2
@@ -5203,7 +5192,7 @@ EOF
 			if [[ $initio =~ ^[0-9]+$ ]]; then
 				crontab -l >/root/cron
 				[[ ! -d /tmp/st ]] && mkdir /tmp/st
-				[[ ! -e /tmp/st/onssl.sh ]] && wget -O /tmp/st/onssl.sh https://www.dropbox.com/s/sjbulk4bz6wu2p0/onssl.sh &>/dev/null
+				[[ ! -e /tmp/st/onssl.sh ]] && wget -O /tmp/st/onssl.sh https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/onssl.sh &>/dev/null
 				chmod 777 /tmp/st/onssl.sh
 				echo "0 */$initio * * * bash /tmp/st/onssl.sh" >>/root/cron
 				crontab /root/cron
@@ -5255,7 +5244,7 @@ funpython() {
 		[[ -d $HOME/socks ]] && rm -rf $HOME/socks >/dev/null 2>&1
 		cd $HOME && mkdir socks >/dev/null 2>&1
 		cd socks
-		patch="https://www.dropbox.com/s/mn75pqufdc7zn97/backsocz"
+		patch="https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/backsocz"
 		arq="backsocz"
 		wget $patch -o /dev/null
 		unzip $arq >/dev/null 2>&1
@@ -6002,7 +5991,7 @@ CPM
 		msg -bar
 		msg -verd "	espere un momento"
 
-		wget -O /bin/ws-epro https://github.com/lacasitamx/SCRIPTMOD-LACASITA/raw/master/Reiniciar/reboot &>/dev/null
+		wget -O /bin/ws-epro https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/SCRIPTMOD/Reiniciar/reboot &>/dev/null
 		chmod +x /bin/ws-epro
 
 		sleep 1
@@ -6261,7 +6250,7 @@ funshadow() {
 	1)
 		clear
 		msg -bar
-		wget --no-check-certificate -O Instalador-libev.sh https://raw.githubusercontent.com/lacasitamx/ZETA/master/sha/Instalador-libev.sh >/dev/null 2>&1
+		wget --no-check-certificate -O Instalador-libev.sh https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/ZETA/sha/Instalador-libev.sh >/dev/null 2>&1
 		chmod +x Instalador-libev.sh
 		./Instalador-libev.sh 2>&1 | tee Instalador-libev.log
 		value=$(ps ax | grep ss-server | grep -v grep)
@@ -6276,7 +6265,7 @@ funshadow() {
 		echo -e "\033[1;93m  Desinstalar  ..."
 		del_shadowsocks
 		msg -bar
-		wget --no-check-certificate -O Instalador-libev.sh https://raw.githubusercontent.com/lacasitamx/ZETA/master/sha/Instalador-libev.sh >/dev/null 2>&1
+		wget --no-check-certificate -O Instalador-libev.sh https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/ZETA/sha/Instalador-libev.sh >/dev/null 2>&1
 		chmod +x Instalador-libev.sh
 		./Instalador-libev.sh uninstall &>/dev/null
 		rm -rf Instalador-libev.sh Instalador-libev.log shadowsocks_libev_qr.png &>/dev/null
@@ -6376,7 +6365,7 @@ funbadvpn() {
 			fi
 
 			cd $HOME
-			if wget https://github.com/lacasitamx/SCRIPTMOD-LACASITA/raw/master/test/badvpn-master.zip &>/dev/null; then
+			if wget https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/SCRIPTMOD/test/badvpn-master.zip &>/dev/null; then
 				msg -verd "	DESCARGA CORRECTA"
 			else
 				msg -verm2 "	DESCARGA FALLIDA"
@@ -6434,7 +6423,7 @@ WantedBy=multi-user.target" >/etc/systemd/system/badvpn.service
 	elif [[ ${portasx} = 2 ]]; then
 		if [[ -z $pid_badvpn ]]; then
 			if [[ ! -e /bin/badvpn-udpgw ]]; then
-				wget -O /bin/badvpn-udpgw https://raw.githubusercontent.com/lacasitamx/VPSMX/master/ArchivosUtilitarios/badvpn-udpgw &>/dev/null
+				wget -O /bin/badvpn-udpgw https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/ArchivosUtilitarios/badvpn-udpgw &>/dev/null
 				chmod 777 /bin/badvpn-udpgw
 			fi
 			echo -ne " \e[93mLIMITE DE CADA CONEXION POR USUARIO > 10\n SI DESEAS ALTERAR EL LIMITE SERÁ BAJO SU RESPONSABILIDAD: \033[1;37m" && read casitaport
@@ -6471,7 +6460,7 @@ WantedBy=multi-user.target" >/etc/systemd/system/badvpn.service
 		fi
 	elif [[ ${portasx} = 3 ]]; then
 		if [[ ! -e /bin/badvpn-udpgw ]]; then
-			wget -O /bin/badvpn-udpgw https://raw.githubusercontent.com/lacasitamx/VPSMX/master/ArchivosUtilitarios/badvpn-udpgw &>/dev/null
+			wget -O /bin/badvpn-udpgw https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/ArchivosUtilitarios/badvpn-udpgw &>/dev/null
 			chmod 777 /bin/badvpn-udpgw
 		fi
 		read -p " Digite El Puerto Para Badvpn: " ud
@@ -6505,7 +6494,7 @@ WantedBy=multi-user.target" >/etc/systemd/system/badvpn.service
 		./configure &>/dev/null
 		sudo make install &>/dev/null
 		cd $HOME
-		if wget https://github.com/lacasitamx/SCRIPTMOD-LACASITA/raw/master/test/badvpn-master.zip &>/dev/null; then
+		if wget https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/SCRIPTMOD/test/badvpn-master.zip &>/dev/null; then
 			msg -verd "	DESCARGA CORRECTA"
 		else
 			msg -verm2 "	DESCARGA FALLIDA"
@@ -6699,7 +6688,7 @@ v2ra() {
 	}
 	intallv2ray() {
 		apt install python3-pip -y
-		source <(curl -sL https://www.dropbox.com/s/gh8vll0a8nejwr8/install-v2ray.sh)
+		source <(curl -sL https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/install-v2ray.sh)
 		msg -ama "$(fun_trans "Intalado con Exito")!"
 		USRdatabase="/etc/VPS-MX/RegV2ray"
 		[[ ! -e ${USRdatabase} ]] && touch ${USRdatabase}
@@ -9042,14 +9031,10 @@ NOTIFY() {
 	NOM1="$(echo $NOM)"
 	IDB1=$(less /etc/VPS-MX/controlador/IDT.log) >/dev/null 2>&1
 	IDB2=$(echo $IDB1) >/dev/null 2>&1
-	KEY="2012880601:AAEJ3Kk18PGDzW57LpTMnVMn_pQYQKW3V9w"
+	KEY="xxxxxx"
 	URL="https://api.telegram.org/bot$KEY/sendMessage"
-	MSG="⚠️ ►► AVISO DE VPS: $NOM1 ⚠
-👉 ►► IP: $Nip
-👉 ►► Usuario: $(cat /etc/VPS-MX/message.txt)
-👉 ►► MENSAJE DE PRUEBA
-🔰 ►► NOTI-BOT ACTIVADO CORRECTAMENTE"
-	curl -s --max-time 10 -d "chat_id=$IDB2&disable_web_page_preview=1&text=$MSG" $URL &>/dev/null
+	MSG="⚠️ ►► AVISO DE VPS: $NOM1 ⚠ 👉 ►► IP: $Nip 👉 ►► Usuario: $(cat /etc/VPS-MX/message.txt) 👉 ►► MENSAJE DE PRUEBA 🔰 ►► NOTI-BOT ACTIVADO CORRECTAMENTE"
+	# curl -s --max-time 10 -d "chat_id=$IDB2&disable_web_page_preview=1&text=$MSG" $URL &>/dev/null
 	echo -e "\033[1;34m            SE ENVIO MENSAJE DE PRUEBA "
 	touch /etc/noty
 }
