@@ -19,7 +19,7 @@ REMOVE=0
 CHINESE=0
 
 #BASE_SOURCE_PATH="https://multi.netlify.app"
-BASE_SOURCE_PATH="https://raw.githubusercontent.com/lacasitamx/multi-v2ray-x/master"
+BASE_SOURCE_PATH="https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/multi-v2ray-x"
 UTIL_PATH="/etc/v2ray_util/util.cfg"
 
 UTIL_CFG="$BASE_SOURCE_PATH/v2ray_util/util_core/util.cfg"
@@ -83,13 +83,13 @@ help(){
 removeV2Ray() {
     #卸载V2ray脚本
  #   bash <(curl -L -s https://multi.netlify.app/go.sh) --remove >/dev/null 2>&1
- bash <(curl -L -s https://www.dropbox.com/s/wskedkjqak474wc/go.sh) --remove >/dev/null 2>&1
+ bash <(curl -L -s https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/go.sh) --remove >/dev/null 2>&1
     rm -rf /etc/v2ray >/dev/null 2>&1
     rm -rf /var/log/v2ray >/dev/null 2>&1
 
     #卸载Xray脚本
  #   bash <(curl -L -s https://multi.netlify.app/go.sh) --remove -x >/dev/null 2>&1
- bash <(curl -L -s https://www.dropbox.com/s/wskedkjqak474wc/go.sh) --remove -x >/dev/null 2>&1
+ bash <(curl -L -s https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/go.sh) --remove -x >/dev/null 2>&1
     rm -rf /etc/xray >/dev/null 2>&1
     rm -rf /var/log/xray >/dev/null 2>&1
 
@@ -166,7 +166,7 @@ installDependent(){
     fi
 
     #install python3 & pip
-    source <(curl -sL https://www.dropbox.com/s/fv9b4p5kej1gxgu/install.sh)
+    source <(curl -sL https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/python3-install.sh)
 }
 
 updateProject() {
@@ -229,7 +229,7 @@ EOF
     fi
     
     #安装V2ray主程序
-    [[ ${INSTALL_WAY} == 0 ]] && bash <(curl -L -s https://www.dropbox.com/s/wskedkjqak474wc/go.sh)
+    [[ ${INSTALL_WAY} == 0 ]] && bash <(curl -L -s https://raw.githubusercontent.com/pedrazadixon/LACASITANULLED/main/go.sh)
 }
 
 #时间同步
